@@ -5,6 +5,9 @@
 if (!isset($_SESSION['logged'])) {
     header("Location:login.php");
 }
+if ($_SESSION['status']!= "verified") {
+  header("Location:verify.php");
+}
 ?>
   <!-- Sidenav -->
   <?php include"includes/side.php";?>
@@ -97,8 +100,8 @@ if (!isset($_SESSION['logged'])) {
                 <div class="card-body">
                   <div class="row">
                     <div class="col">
-                      <h5 class="card-title text-uppercase text-muted mb-0">Withdrawn</h5>
-                      <span class="h2 font-weight-bold mb-0">2,356</span>
+                      <h5 class="card-title text-uppercase text-muted mb-0">Packages</h5>
+                      <span class="h2 font-weight-bold mb-0">10</span>
                     </div>
                     <div class="col-auto">
                       <div class="icon icon-shape bg-gradient-orange text-white rounded-circle shadow">
@@ -106,9 +109,7 @@ if (!isset($_SESSION['logged'])) {
                       </div>
                     </div>
                   </div>
-                  <p class="mt-3 mb-0 text-sm">
-                    <span class="text-nowrap">Since Start</span>
-                  </p>
+                  <p class="mt-3 mb-0 text-sm">.</p>
                 </div>
               </div>
             </div>

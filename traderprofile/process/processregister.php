@@ -5,6 +5,7 @@ error_reporting(E_ALL);
 ?>
 <?php session_start();?>
 <?php include "../includes/formfunctions.php";?>
+<?php include "../includes/sendmail.php";?>
 <?php include "../includes/dbconnection.php";?>
 <?php
 
@@ -59,6 +60,7 @@ if(empty($_POST["cpassword"])) {
 } 
 
 }
+$token = bin2hex(random_bytes(50));
 
 if($_POST["cpassword"] == $_POST["password"]){
 $password = $confirm_password;
@@ -90,10 +92,11 @@ if (mysqli_num_rows($result)>0){
   }       
 }
 // insert into db
-$insert = " INSERT INTO traders(email,fname,lname,phone,password)VALUES ('$email','$fname','$lname',$phone,'$password') ";
+$insert = " INSERT INTO traders(email,fname,lname,phone,password,token)VALUES ('$email','$fname','$lname',$phone,'$password','$token') ";
 $result = mysqli_query($conn,$insert);
 if($result){
 $_SESSION['message'] = " Registration Successful";
+sendVerificationEmail($email,$token);
 header("Location:../login.php");
 }else{
 echo "ERROR: Could not able to execute $sql. ".mysqli_error($conn); 

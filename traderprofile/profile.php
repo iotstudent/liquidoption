@@ -5,12 +5,16 @@
 if (!isset($_SESSION['logged'])) {
     header("Location:login.php");
 }
+if ($_SESSION['status'] != "verified") {
+  header("Location:verify.php");
+}
 ?>
   <!-- Sidenav -->
   <?php include"includes/side.php";?>
   <!-- Main content -->
   <div class="main-content" id="panel">
   
+  <?php include"includes/sidetoggle.php";?>
     <!-- Header -->
     <div class="header pb-6 d-flex align-items-center" style="min-height: 200px; background-image: url(../assets/img/theme/profile-cover.jpg); background-size: cover; background-position: center top;">
       <!-- Mask -->
@@ -99,15 +103,6 @@ if (!isset($_SESSION['logged'])) {
                 </div>
                 <hr class="my-4" />
                 <!-- Description -->
-                <h6 class="heading-small text-muted mb-4">Account</h6>
-                <div class="pl-lg-4">
-                  <div class="form-group">
-                    <label class="form-control-label">Account</label>
-                    <input type="text"  class="form-control" placeholder="Account Number" name="account"
-                    value="<?php if(isset($_SESSION['account'])){ echo $_SESSION['account'];} ?>"
-                    >
-                  </div>
-                </div>
                 <div class="text-center">
                   <button type="submit" class="btn btn-primary my-4">Update</button>
                 </div>

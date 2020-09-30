@@ -14,7 +14,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
       header("Location:../login.php");
       die();
     } else {
-      $email = test_input($_POST["email"]);
+      $email =  test_input($_POST["email"]);
     }
     
     if(empty($_POST["password"])) {
@@ -52,10 +52,11 @@ if(mysqli_num_rows($result)==1){
         $_SESSION['user_name'] = $row["fname"] ." ".$row["lname"];
         $_SESSION['phone'] = $row["phone"];
         $_SESSION['status'] =  $row['status'];
-        $_SESSION['account'] =  $row['account_number'];
+        
         
 
     if(password_verify($password, $db_password)){
+      print_r($_SESSION);
             header("Location:../index.php");
             die();
       }else{

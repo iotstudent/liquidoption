@@ -1,0 +1,170 @@
+body {
+  background-color: #f4f4f4;
+}
+.navbar {
+  background-color: red;
+}
+.navbar > a {
+  color: #f4f4f4;
+}
+.navbar > div > ul > li > a {
+  color: #f4f4f4;
+}
+
+.navbar,
+.navbar-brand {
+  min-height: 33px !important;
+  margin-bottom: 0;
+  border-radius: 0;
+}
+.navbar > li > a,
+.navbar-brand {
+  padding-top: 6px !important;
+  padding-bottom: 0 !important;
+  height: 33px;
+}
+/* custom */
+.main-color-bg {
+  background-color:#ebce44 !important;
+  color: #ffffff;
+  border-color:#ebce44 !important;
+}
+h6 {
+  font-size: 10px !important;
+}
+h5 {
+  font-size: 15px !important;
+}
+h4 {
+  font-size: 20px !important;
+}
+h3{
+  font-size: 25px !important;
+}
+h2{
+  font-size: 30px !important;
+}
+
+h1 {
+  font-size: 35px !important;
+}
+small {
+  font-size: 9px !important;
+}
+@media only screen and (max-width: 764px) {
+  h6 {
+    font-size: 9px !important;
+  }
+  h5 {
+    font-size: 10px !important;
+  }
+  h4 {
+    font-size: 15px !important;
+  }
+  h3{
+    font-size: 20px !important;
+  }
+  h2{
+    font-size: 25px !important;
+  }
+  
+  h1 {
+    font-size: 30px !important;
+  }
+  small {
+    font-size: 9px !important;
+  }
+}
+
+#login {
+  margin-top: 45px;
+}
+
+/* header */
+#header {
+  background-color: #696969;
+  color: #ffffff;
+  padding-bottom: 10px;
+  margin-bottom: 15px;
+}
+#header .create {
+  padding-top: 20px;
+}
+/*  Breadcrumb */
+#breadcrumb {
+  margin-bottom: 15px;
+}
+.breadcrumb {
+  background-color: #cccccc;
+  color: #333333 !important;
+}
+.breadcrumb a {
+  color: #333333 !important;
+}
+
+.dash-box {
+  text-align: center;
+}
+@media only screen and (max-width: 764px) {
+  .dash-box {
+    margin: 5px 0px 5px 0px;
+  }
+}
+.lower-sections {
+  margin-top: 15px !important;
+}
+
+.listed {
+  margin: 0px 1px 0px 1px !important;
+}
+.listed2 {
+  margin: 0px 0px 0px 2% !important;
+}
+.savedprops > ul > li {
+  list-style-type: none;
+}
+.listings {
+  list-style-type: none;
+}
+.listings > li {
+  display: inline;
+  padding: 5px;
+}
+.listings2 {
+  list-style-type: none;
+}
+.listings2 > li {
+  display: inline;
+  margin: 5px;
+}
+.listingsp {
+  margin-left: 35px;
+}
+.mobilenav {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+.sidenav>a:hover{
+  background-color: #ebce44;
+}
+
+@media only screen and (max-width: 764px) {
+  .sidenav {
+    display: none !important;
+  }
+  #breadcrumb {
+    display: none !important;
+  }
+}
+
+@media only screen and (min-width: 765px) {
+  .mobilenav {
+    display: none !important;
+  }
+}
+.plans-link{
+  text-decoration:none;
+}
+.plans-link:hover{
+  text-decoration:none;
+}
