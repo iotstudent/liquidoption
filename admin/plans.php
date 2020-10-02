@@ -1,15 +1,19 @@
 <?php session_start();?>
-<?php include"includes/alerts.php";?>
 <?php include"includes/head.php";?>
 <?php include "includes/dbconnection.php";?>
 <?php
 if(!isset($_SESSION['logged'])){
     header("Location:login.php");
 }
+if(isset($_GET['plan'])){
+    $plan = $_GET['plan'];
+    
+
+}
 
 
 ?>
-<title> Admin | Soon to end</title>
+<title>Dashboard | Plan Trades </title>
 </head>
 
 <body>
@@ -20,7 +24,7 @@ if(!isset($_SESSION['logged'])){
             <div class="row">
                 <div class="col-md-12">
                     <h2 class="text-center">
-                        Soon to end trades
+                        Traders 
                     </h2>
                 </div>
             </div>
@@ -29,13 +33,15 @@ if(!isset($_SESSION['logged'])){
 
     <!-- Mobilenav -->
     <?php include"includes/mobile.php";?>
+     
 
 
     <section id="breadcrumb">
         <div class="container-fluid">
             <ol class="breadcrumb">
                 <li>Dashboard /</li>
-                <li class="active"><a href="soontoend.html">Soon to end trades</a></li>
+                <li>view Trades /</li>
+                <li class="active"><a href="plans.php?plan=<?php echo $plan;?>"><?php echo $plan;?></a></li>
             </ol>
         </div>
     </section>
@@ -43,45 +49,40 @@ if(!isset($_SESSION['logged'])){
     <section id="main">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-md-2">
-                <?php include"includes/side.php";?>
-                </div>
-                <div class="col-md-10">
+                
+                <div class="col-md-10 offset-md-1">
 
                     <div class="card ">
                         <div class="card-header main-color-bg">
-                            Soon to end 
+                            Student plan
                         </div>
                         <div class="card-body">
                             <div class="row">
-                                <div class="col-md-12 ">
+                                <div class="col-md-12 mr-2 ml-2">
                                     <table class="table table-striped table-hover table-responsive">
                                         <tr>
                                             <th>S/n</th>
                                             <th>First Name</th>
                                             <th>Last Name</th>
                                             <th>Email</th>
-                                            <th>Trade plan</th>
                                             <th>Start date</th>
                                             <th>End date</th>
-                                            <th>principal</th>
+                                            <th>Duration</th>
+                                            <th>Principal</th>
                                             <th>profit</th>
-                                            <th></th>
+                                            
                                         </tr>
-                                        
-                                <?php
+                                        <?php
 
 
-date_default_timezone_set('Nigeria/Lagos');
-$date = date('Y/m/d', time());
 
 
-$sql= " SELECT traders.user_id,traders.fname,traders.lname,traders.email,Trades.plan,Trades.start_date,Trades.end_date,Trades.duration,Trades.principal,Trades.expected_earning FROM traders JOIN Trades ON  Trades.user_id = traders.user_id   WHERE DATEDIFF('$date',Trades.end_date)=2";
+$sql= " SELECT traders.fname,traders.lname,traders.email,Trades.plan,Trades.start_date,Trades.end_date,Trades.duration,Trades.principal,Trades.expected_earning FROM traders JOIN Trades ON  Trades.user_id = traders.user_id WHERE Trades.plan = '$plan'  ORDER BY Trades.start_date DESC";
 if($result = mysqli_query($conn,$sql)){ 
         if (mysqli_num_rows($result)>0){
             $n=1;
             while($row = mysqli_fetch_array($result, MYSQLI_ASSOC)){
-                $trader_id = $row['user_id'];
+            
                 $trader_fname = $row['fname'];
                 $trader_lname = $row['lname'];
                 $trader_email = $row['email'];
@@ -103,8 +104,7 @@ if($result = mysqli_query($conn,$sql)){
                     <td><?php echo $start_date;?></td>
                     <td><?php echo  $end_date;?></td> 
                     <td><?php echo $principal;?></td>  
-                    <td><?php echo $expected;?></td>  
-                    <td><a class="btn btn-success" href="#">Sendmail</a></td>        
+                    <td><?php echo $expected;?></td>          
                 </tr>
                 
             <?php  
@@ -119,6 +119,7 @@ if($result = mysqli_query($conn,$sql)){
 
 ?>
 
+                                        
                                         
                                         
                                     </table>

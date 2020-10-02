@@ -1,6 +1,13 @@
 <?php session_start();?>
 <?php include"includes/head.php";?>
-<title>Admin|Dashboard</title>
+<?php include "includes/dbconnection.php";?>
+<?php
+if(!isset($_SESSION['logged'])){
+    header("Location:login.php");
+}
+
+?>
+<title>Admin | view Traders</title>
 </head>
 <body>
    
@@ -45,40 +52,28 @@
                     <div class="card ">
                         <div class="card-header main-color-bg">Panel</div>
                         <div class="card-body">
+                        <form action="plans.php" method="get">
                             <div class="row">
 
                                 <div class="col-md-3">
                                     <div class="card card-body bg-light dash-box">
-                                        <a href="student.php" class="plans-link">
-                                            <h6>100</h6>
-                                            <h5>Student plan</h5>
-                                        </a>
-                                        
+                                        <button type="submit" name="plan" value="student" class="card">Student plan</button>
                                     </div>
                                 </div>
                                
                                 <div class="col-md-3">
                                     <div class="card card-body bg-light dash-box">
-                                        <a href="" class="plans-link">
-                                            <h6>200</h6>
-                                            <h5>Basic plan</h5>
-                                        </a>
+                                        <button type="submit" name="plan" value="basic" class="card">Basic plan</button>
                                     </div>
                                 </div>
                                 <div class="col-md-3">
-                                    <div class="card card-body bg-light dash-box">
-                                        <a href="" class="plans-link">
-                                            <h6>500</h6>
-                                            <h5>Classic plan</h5>
-                                        </a>
+                                <div class="card card-body bg-light dash-box">
+                                        <button type="submit" name="plan" value="classic" class="card">Classic plan</button>
                                     </div>
                                 </div>
                                 <div class="col-md-3">
-                                    <div class="card card-body bg-light dash-box">
-                                        <a href="" class="plans-link">
-                                            <h6>800</h6>
-                                            <h5>Business plan</h5>
-                                        </a>
+                                <div class="card card-body bg-light dash-box">
+                                        <button type="submit" name="plan" value="business" class="card">Business plan</button>
                                     </div>
                                 </div>
                             </div>
@@ -87,35 +82,23 @@
 
                                 <div class="col-md-3">
                                     <div class="card card-body bg-light dash-box">
-                                        <a href="" class="plans-link">
-                                            <h6>100</h6>
-                                            <h5>Commercial plan</h5>
-                                        </a>
+                                        <button type="submit" name="plan" value="commercial" class="card">Commercial plan</button>
                                     </div>
                                 </div>
                                
                                 <div class="col-md-3">
-                                    <div class="card card-body bg-light dash-box">
-                                        <a href="" class="plans-link">
-                                            <h6>100</h6>
-                                            <h5>Company plan</h5>
-                                        </a>
+                                <div class="card card-body bg-light dash-box">
+                                        <button type="submit" name="plan" value="company" class="card">Company plan</button>
                                     </div>
                                 </div>
                                 <div class="col-md-3">
-                                    <div class="card card-body bg-light dash-box">
-                                        <a href="" class="plans-link">
-                                            <h6>100</h6>
-                                            <h5>Contract plan A</h5>
-                                        </a>
+                                <div class="card card-body bg-light dash-box">
+                                        <button type="submit" name="plan" value="contracta" class="card">Contract plan A </button>
                                     </div>
                                 </div>
                                 <div class="col-md-3">
-                                    <div class="card card-body bg-light dash-box">
-                                        <a href="" class="plans-link">
-                                            <h6>300</h6>
-                                            <h5>Contract plan B</h5>
-                                        </a>
+                                <div class="card card-body bg-light dash-box">
+                                        <button type="submit" name="plan" value="contractb" class="card">Contract plan B </button>
                                     </div>
                                 </div>
                             </div>
@@ -123,31 +106,23 @@
                             <div class="row">
 
                                 <div class="col-md-3">
-                                    <div class="card card-body bg-light dash-box">
-                                        <a href="" class="plans-link">
-                                            <h6>100</h6>
-                                            <h5>Smart plan A</h5>
-                                        </a>
+                                <div class="card card-body bg-light dash-box">
+                                        <button type="submit" name="plan" value="smarta" class="card">Smart plan A </button>
                                     </div>
                                 </div>
                                
                                 <div class="col-md-3">
-                                    <div class="card card-body bg-light dash-box">
-                                        <a href="" class="plans-link">
-                                            <h6>100</h6>
-                                            <h5>Smart plan B</h5>
-                                        </a>
+                                <div class="card card-body bg-light dash-box">
+                                        <button type="submit" name="plan" value="smartb" class="card">Smart plan B </button>
                                     </div>
                                 </div>
                                 <div class="col-md-3">
-                                    <div class="card card-body bg-light dash-box">
-                                        <a href="smartb.html" class="plans-link">
-                                            <h6>100</h6>
-                                            <h5>Smart plan B</h5>
-                                        </a>
+                                <div class="card card-body bg-light dash-box">
+                                        <button type="submit" name="plan" value="smartc" class="card">Smart plan c </button>
                                     </div>
                                 </div>
                             </div>
+                        </form>
                         </div>
                     </div>
                 </div>
@@ -155,41 +130,6 @@
         </div>
     </section>
 
-    <!-- modal for add page -->
-    <div class="modal fade" id="addpage" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-              <form action="">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Add Page</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-                <div class="form-group">
-                    <label>Page Title</label>
-                    <input type="text" class="form-control" placeholder="page title">
-                </div>
-                <div class="form-group">
-                    <label>Page Body</label>
-                    <textarea name="editor1" placeholder="page body" class="form-control"></textarea>
-                </div>
-                <div class="form-group">
-                    <label>Meta Tags</label>
-                    <input type="text" class="form-control" placeholder="Some tags">
-                </div>
-                <div class="form-group">
-                    <label>Meta description</label>
-                    <input type="text" class="form-control" placeholder="Meta tags">
-                </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              <button type="submit" class="btn btn-primary">Save changes</button>
-            </form>
-            </div>
-          </div>
-        </div>
-      </div>      
+   
 </body>
 </html>

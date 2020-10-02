@@ -55,7 +55,14 @@ if(!isset($_SESSION['logged'])){
                                     <div class="card card-body bg-light dash-box">
                                         <h2><i class="fa fa-user"></i></h2>
                                         <h6><?php CountTraders();?></h6>
-                                        <h5>Traders</h5>
+                                        <h5>Registered Traders</h5>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="card card-body bg-light dash-box">
+                                        <h2><i class="fa fa-envelope"></i></h2>
+                                        <h6><?php CountEmailverified();?></h6>
+                                        <h5>Email verified Traders</h5>
                                     </div>
                                 </div>
                                
@@ -63,20 +70,20 @@ if(!isset($_SESSION['logged'])){
                                     <div class="card card-body bg-light dash-box">
                                         <h2><i class="fa fa-user-times"></i></h2>
                                         <h6><?php CountUnverified();?></h6>
-                                        <h5>Unverified Traders</h5>
+                                        <h5>Admin Unverified Traders</h5>
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="card card-body bg-light dash-box">
                                         <h2><i class="fa fa-money"></i></h2>
-                                        <h6>10000</h6>
+                                        <h6><?php CountTrades();?></h6>
                                         <h5>Trades</h5>
                                     </div>
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-md-3 mt-1">
                                     <div class="card card-body bg-light dash-box">
                                         <h2><i class="fa  fa-bell-slash "></i></h2>
-                                        <h6>100</h6>
+                                        <h6><?php CountSoonToEnd();?></h6>
                                         <h5>Soon to End Trades</h5>
                                 </div>
                             </div>
@@ -97,34 +104,52 @@ if(!isset($_SESSION['logged'])){
                                     <th>Email</th>
                                     <th></th>
                                 </tr>
+                                <?php
+                
+                $sql= " SELECT * FROM traders WHERE (admin_verify IS NULL OR admin_verify <> 'verified') AND status = 'verified' LIMIT 5";
+                if($result = mysqli_query($conn,$sql)){ 
+                        if (mysqli_num_rows($result)>0){
+                            $n=1;
+                            while($row = mysqli_fetch_array($result, MYSQLI_ASSOC)){
+                                $trader_id = $row['user_id'];
+                                $trader_fname = $row['fname'];
+                                $trader_lname = $row['lname'];
+                                $trader_email = $row['email'];
+                                $trader_phone = $row['phone'];
+                                ?>
+                                
                                 <tr>
-                                    <td>1</td>
-                                    <td>paul</td>
-                                    <td>james </td>
-                                    <td>paul@jmaes.com</td>
-                                    <td><a class="btn btn-success" href="#">Verify</a></td>
+                                    <td><?php echo $n;?></td>
+                                    <td><?php echo $trader_fname;?></td>
+                                    <td><?php echo $trader_lname;?></td>
+                                    <td><?php echo $trader_email;?></td>
+                                    <td><a class="btn btn-success" href="#">Verify</a></td>            
                                 </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td>Sale</td>
-                                    <td>man</td>
-                                    <td>sale@man.com</td>
-                                    <td><a class="btn btn-success" href="#">Verify</a></td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>john</td>
-                                    <td>mark</td>
-                                    <td>john@mark.com</td>
-                                    <td><a class="btn btn-success" href="#">Verify</a></td>
-                                </tr>
-                                <tr>
-                                    <td>4</td>
-                                    <td>susan</td>
-                                    <td>peter</td>
-                                    <td>susan@peter.com</td>
-                                    <td><a class="btn btn-success" href="#">Verify</a></a></td>
-                                </tr>
+                                
+                            <?php  
+                            $n++;    
+                        }
+                        }else{
+                            echo "No matching records are found."; 
+                        }    
+                    }else { 
+                        echo "ERROR: Could not able to execute $sql. ".mysqli_error($conn); 
+                    } 
+
+             
+             ?>
+              <?php
+                if(isset($_POST['formverify'])){
+                    if(isset($_POST['traderid']) && !empty($_POST['traderid'])){
+                        $traderid = $_POST['traderid'];
+                        $sql= "UPDATE traders SET admin_verify = 'verified' WHERE user_id = '$traderid'";
+                        $update = mysqli_query($conn,$sql);
+                    }
+                }
+             
+             ?>
+                                
+                                
                             </table>
                         </div>
                     </div>

@@ -1,7 +1,13 @@
 <?php session_start();?>
 <?php include"includes/head.php";?>
 <?php include "includes/dbconnection.php";?>
-<title>Dashboard | All Traders</title>
+<?php
+if(!isset($_SESSION['logged'])){
+    header("Location:login.php");
+}
+
+?>
+<title> Admin | All Traders</title>
 </head>
 <body>
 
@@ -51,7 +57,8 @@
                                             <th>Last Name</th>
                                             <th>Email</th>
                                             <th>Phone no</th>
-                                            <th>Verification Status</th>
+                                            <th>Email Verification </th>
+                                            <th>Admin Verification </th>
                                         </tr>
 
 
@@ -67,6 +74,7 @@
                                             $trader_email = $row['email'];
                                             $trader_phone = $row['phone'];
                                             $trader_status = $row['status'];
+                                            $trader_admin_verification = $row['admin_verify'];
                                             ?>
                                             
                                             <tr>
@@ -75,7 +83,8 @@
                                                 <td><?php echo $trader_lname;?></td>
                                                 <td><?php echo $trader_email;?></td>
                                                 <td><?php echo $trader_phone;?></td>
-                                                <td><?php echo $trader_status;?></td>            
+                                                <td><?php echo $trader_status;?></td> 
+                                                <td><?php echo $trader_admin_verification;?></td>          
                                             </tr>
                                             
                                         <?php  

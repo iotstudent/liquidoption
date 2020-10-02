@@ -6,7 +6,7 @@ if (!isset($_SESSION['logged'])) {
     header("Location:login.php");
 }
 ?>
-    <title> Change Password </title>
+<title> Admin | Change Password </title>
 </head>
 
 <body class="main-color-bg">
