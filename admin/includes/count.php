@@ -70,7 +70,7 @@
                     $trade_number = '';
                     date_default_timezone_set('Nigeria/Lagos');
                     $date = date('Y/m/d', time());
-                    $sql= (" SELECT COUNT(trade_id) AS notrades FROM Trades  WHERE DATEDIFF('$date',end_date)=2;");
+                    $sql= (" SELECT COUNT(trade_id) AS notrades FROM Trades  WHERE DATEDIFF(end_date,'$date')<=2 AND (notify IS NULL);");
                         if($result = mysqli_query($conn,$sql)){ 
                         if (mysqli_num_rows($result)>0){
                             $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
@@ -82,5 +82,6 @@
                     }
 
                 }
+
 
 ?>

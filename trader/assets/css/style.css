@@ -1,0 +1,15 @@
+.bg-primary{
+    background-color: #ebce44 !important;
+}
+.main-color-bg {
+    background-color:#ebce44 !important;
+    color: #ffffff !important;
+    border-color:#ebce44 !important;
+  }
+
+
+.bg-gradient-main
+{
+    background: linear-gradient(87deg, #ebce44 0,  #ebce44 100%) !important;
+}
+/* #5e72e4 */

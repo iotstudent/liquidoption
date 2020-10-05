@@ -1,5 +1,5 @@
 <?php
-require_once '../vendor/autoload.php';
+require_once 'vendor/autoload.php';
 
 // Create the Transport
 $transport = (new Swift_SmtpTransport('smtp.gmail.com', 465, 'ssl'))
@@ -9,7 +9,7 @@ $transport = (new Swift_SmtpTransport('smtp.gmail.com', 465, 'ssl'))
 // Create the Mailer using your created Transport
 $mailer = new Swift_Mailer($transport);
 
-function sendVerificationEmail($userEmail, $token)
+function sendEmail($userEmail,$trade_plan,$end_date,$trader_fname,$trader_lname)
 {
     global $mailer;
     $body = '<!DOCTYPE html>
@@ -19,7 +19,11 @@ function sendVerificationEmail($userEmail, $token)
       <meta charset="UTF-8">
       <title>Test mail</title>
       <style>
+        body{
+          background-color:blue;
+         }
         .wrapper {
+          margin:50px;
           padding: 20px;
           color: #444;
           font-size: 1.3em;
@@ -31,20 +35,29 @@ function sendVerificationEmail($userEmail, $token)
           border-radius: 5px;
           color: #fff;
         }
+        
       </style>
     </head>
 
     <body>
       <div class="wrapper">
-        <p>Thank you for signing up on our site. Please click on the link below to verify your account:.</p>
-        <a href="http://localhost:3000/verifyemail.php?token=' . $token . '">Verify Email!</a>
+      <p>Dear <span style="text-transform:capitalize;">'.$trader_lname.' '.$trader_fname.'</span> </p>
+      <p>
+       your investment on our platform. which is the '.$trade_plan.' plan  would be ready on the '.$end_date.'
+       please kindly reply this email with your prefered payment platform and details.
+       <ol>
+          <li>Bitcoin</li>
+          <li>Bank transfer</li>
+       </ol>
+      </p>  
+     
       </div>
     </body>
 
     </html>';
 
     // Create a message
-    $message = (new Swift_Message('Verify your email'))
+    $message = (new Swift_Message('Investment Notification'))
         ->setFrom("promisebeeceo@gmail.com")
         ->setTo($userEmail)
         ->setBody($body, 'text/html');
@@ -54,9 +67,9 @@ function sendVerificationEmail($userEmail, $token)
 
     if ($result > 0) {
         return true;
-        echo "moi moi";
+       
     } else {
-        echo "error";
+        
         return false;
     }
 }

@@ -45,12 +45,12 @@ if(!isset($_SESSION['logged'])){
 
                     <div class="card ">
                         <div class="card-header main-color-bg">
-                            Traders
+                            <h4>Traders</h4>
                         </div>
                         <div class="card-body">
                             <div class="row">
-                                <div class="col-md-10 offset-md-1">
-                                    <table class="table table-striped table-hover table-responsive">
+                                <div class="table-responsive">
+                                    <table class="table table-striped table-hover ">
                                         <tr>
                                             <th>S/n</th>
                                             <th>First Name</th>
@@ -91,7 +91,7 @@ if(!isset($_SESSION['logged'])){
                                         $n++;    
                                     }
                                     }else{
-                                        echo "No matching records are found."; 
+                                        echo "<tr><td>No matching records are found.</td></tr>"; 
                                     }    
                                 }else { 
                                     echo "ERROR: Could not able to execute $sql. ".mysqli_error($conn); 

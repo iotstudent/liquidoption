@@ -1,15 +1,6 @@
 <?php session_start();?>
-<?php
-    ini_set('display_errors',1);
-    ini_set('display_startup_errors',1);
-    error_reporting(E_ALL);
-?>
-
 <?php include "../includes/dbconnection.php";?>
 <?php include "../includes/formfunctions.php";?>
-
-
-
 <?php
 
 if (!isset($_SESSION['logged'])) {

@@ -15,7 +15,7 @@ if (!isset($_SESSION['logged'])) {
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
-                    <h2 class="text-center" style="color:#ebce44;"> Change Password </h2>
+                    <h2 class="text-center"> Change Password </h2>
                 </div>
             </div>
         </div>

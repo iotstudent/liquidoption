@@ -10,7 +10,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
-                    <h2 class="text-center" style="color:#ebce44;"> Admin </h2>
+                    <h2 class="text-center"> Admin </h2>
                 </div>
             </div>
         </div>

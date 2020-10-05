@@ -50,29 +50,31 @@ if(!isset($_SESSION['logged'])){
                 <div class="col-md-10">
 
                     <div class="card ">
-                        <div class="card-header main-color-bg">Panel</div>
+                        <div class="card-header main-color-bg">
+                           <h4>Panel</h4> 
+                        </div>
                         <div class="card-body">
                         <form action="plans.php" method="get">
                             <div class="row">
 
                                 <div class="col-md-3">
-                                    <div class="card card-body bg-light dash-box">
+                                    <div class="card card-body bg-light ">
                                         <button type="submit" name="plan" value="student" class="card">Student plan</button>
                                     </div>
                                 </div>
                                
                                 <div class="col-md-3">
-                                    <div class="card card-body bg-light dash-box">
+                                    <div class="card card-body bg-light ">
                                         <button type="submit" name="plan" value="basic" class="card">Basic plan</button>
                                     </div>
                                 </div>
                                 <div class="col-md-3">
-                                <div class="card card-body bg-light dash-box">
+                                <div class="card card-body bg-light ">
                                         <button type="submit" name="plan" value="classic" class="card">Classic plan</button>
                                     </div>
                                 </div>
                                 <div class="col-md-3">
-                                <div class="card card-body bg-light dash-box">
+                                <div class="card card-body bg-light ">
                                         <button type="submit" name="plan" value="business" class="card">Business plan</button>
                                     </div>
                                 </div>
@@ -81,23 +83,23 @@ if(!isset($_SESSION['logged'])){
                             <div class="row">
 
                                 <div class="col-md-3">
-                                    <div class="card card-body bg-light dash-box">
+                                    <div class="card card-body bg-light ">
                                         <button type="submit" name="plan" value="commercial" class="card">Commercial plan</button>
                                     </div>
                                 </div>
                                
                                 <div class="col-md-3">
-                                <div class="card card-body bg-light dash-box">
+                                <div class="card card-body bg-light ">
                                         <button type="submit" name="plan" value="company" class="card">Company plan</button>
                                     </div>
                                 </div>
                                 <div class="col-md-3">
-                                <div class="card card-body bg-light dash-box">
+                                <div class="card card-body bg-light ">
                                         <button type="submit" name="plan" value="contracta" class="card">Contract plan A </button>
                                     </div>
                                 </div>
                                 <div class="col-md-3">
-                                <div class="card card-body bg-light dash-box">
+                                <div class="card card-body bg-light">
                                         <button type="submit" name="plan" value="contractb" class="card">Contract plan B </button>
                                     </div>
                                 </div>
@@ -106,18 +108,18 @@ if(!isset($_SESSION['logged'])){
                             <div class="row">
 
                                 <div class="col-md-3">
-                                <div class="card card-body bg-light dash-box">
+                                <div class="card card-body bg-light">
                                         <button type="submit" name="plan" value="smarta" class="card">Smart plan A </button>
                                     </div>
                                 </div>
                                
                                 <div class="col-md-3">
-                                <div class="card card-body bg-light dash-box">
+                                <div class="card card-body bg-light">
                                         <button type="submit" name="plan" value="smartb" class="card">Smart plan B </button>
                                     </div>
                                 </div>
                                 <div class="col-md-3">
-                                <div class="card card-body bg-light dash-box">
+                                <div class="card card-body bg-light">
                                         <button type="submit" name="plan" value="smartc" class="card">Smart plan c </button>
                                     </div>
                                 </div>

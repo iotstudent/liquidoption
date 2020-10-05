@@ -8,9 +8,8 @@ if(!isset($_SESSION['logged'])){
 }
 
 ?>
-    <title>Admin|Dashboard</title>
+<title>Admin|Dashboard</title>
 </head>
-
 <body>
    
 
@@ -45,45 +44,48 @@ if(!isset($_SESSION['logged'])){
                 <div class="col-md-2">
                 <?php include"includes/side.php";?>
                 </div>
-                <div class="col-md-10">
 
+                <!-- dashboard panel -->
+                <div class="col-md-10">
                     <div class="card ">
-                        <div class="card-header main-color-bg">Panel</div>
+                        <div class="card-header main-color-bg">
+                            <h4>Panel</h4>
+                        </div>
                         <div class="card-body">
                             <div class="row">
-                                <div class="col-md-3">
+                                <div class="col-md-3 box">
                                     <div class="card card-body bg-light dash-box">
-                                        <h2><i class="fa fa-user"></i></h2>
-                                        <h6><?php CountTraders();?></h6>
+                                        <i class="fa fa-user"></i>
+                                        <h4><?php CountTraders();?></h4>
                                         <h5>Registered Traders</h5>
                                     </div>
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-md-3 box">
                                     <div class="card card-body bg-light dash-box">
-                                        <h2><i class="fa fa-envelope"></i></h2>
-                                        <h6><?php CountEmailverified();?></h6>
+                                        <i class="fa fa-envelope"></i>
+                                        <h4><?php CountEmailverified();?></h4>
                                         <h5>Email verified Traders</h5>
                                     </div>
                                 </div>
                                
-                                <div class="col-md-3">
+                                <div class="col-md-3 box">
                                     <div class="card card-body bg-light dash-box">
-                                        <h2><i class="fa fa-user-times"></i></h2>
-                                        <h6><?php CountUnverified();?></h6>
+                                        <i class="fa fa-user-times"></i>
+                                        <h4><?php CountUnverified();?></h4>
                                         <h5>Admin Unverified Traders</h5>
                                     </div>
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-md-3 box">
                                     <div class="card card-body bg-light dash-box">
-                                        <h2><i class="fa fa-money"></i></h2>
-                                        <h6><?php CountTrades();?></h6>
+                                        <i class="fa fa-money"></i>
+                                        <h4><?php CountTrades();?></h4>
                                         <h5>Trades</h5>
                                     </div>
                                 </div>
-                                <div class="col-md-3 mt-1">
+                                <div class="col-md-3 mt-1 box">
                                     <div class="card card-body bg-light dash-box">
-                                        <h2><i class="fa  fa-bell-slash "></i></h2>
-                                        <h6><?php CountSoonToEnd();?></h6>
+                                        <i class="fa fa-bell-slash"></i>
+                                        <h4><?php CountSoonToEnd();?></h4>
                                         <h5>Soon to End Trades</h5>
                                 </div>
                             </div>
@@ -93,9 +95,10 @@ if(!isset($_SESSION['logged'])){
                     <!-- Latest unverified traders -->
                     <div class="card lower-sections">
                         <div class="card-header main-color-bg">
-                            Unverified Traders
+                            <h4>Unverified Traders</h4>
                         </div>
                         <div class="card-body">
+                            <div class="table-responsive">
                             <table class="table table-striped table-hover">
                                 <tr>
                                     <th>S/n</th>
@@ -104,53 +107,59 @@ if(!isset($_SESSION['logged'])){
                                     <th>Email</th>
                                     <th></th>
                                 </tr>
-                                <?php
+                <?php
                 
-                $sql= " SELECT * FROM traders WHERE (admin_verify IS NULL OR admin_verify <> 'verified') AND status = 'verified' LIMIT 5";
-                if($result = mysqli_query($conn,$sql)){ 
-                        if (mysqli_num_rows($result)>0){
-                            $n=1;
-                            while($row = mysqli_fetch_array($result, MYSQLI_ASSOC)){
-                                $trader_id = $row['user_id'];
-                                $trader_fname = $row['fname'];
-                                $trader_lname = $row['lname'];
-                                $trader_email = $row['email'];
-                                $trader_phone = $row['phone'];
-                                ?>
-                                
-                                <tr>
-                                    <td><?php echo $n;?></td>
-                                    <td><?php echo $trader_fname;?></td>
-                                    <td><?php echo $trader_lname;?></td>
-                                    <td><?php echo $trader_email;?></td>
-                                    <td><a class="btn btn-success" href="#">Verify</a></td>            
-                                </tr>
-                                
-                            <?php  
-                            $n++;    
-                        }
-                        }else{
-                            echo "No matching records are found."; 
-                        }    
-                    }else { 
-                        echo "ERROR: Could not able to execute $sql. ".mysqli_error($conn); 
-                    } 
+                    $sql= " SELECT * FROM traders WHERE (admin_verify IS NULL OR admin_verify <> 'verified') AND status = 'verified' LIMIT 5";
+                    if($result = mysqli_query($conn,$sql)){ 
+                            if (mysqli_num_rows($result)>0){
+                                $n=1;
+                                while($row = mysqli_fetch_array($result, MYSQLI_ASSOC)){
+                                    $trader_id = $row['user_id'];
+                                    $trader_fname = $row['fname'];
+                                    $trader_lname = $row['lname'];
+                                    $trader_email = $row['email'];
+                                    $trader_phone = $row['phone'];
+                                    ?>
+                                    
+                                    <tr>
+                                        <td><?php echo $n;?></td>
+                                        <td><?php echo $trader_fname;?></td>
+                                        <td><?php echo $trader_lname;?></td>
+                                        <td><?php echo $trader_email;?></td>
+                                        <td>
+                                            <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method='post' style="display: inline;">
+                                                <input type='hidden'  name='traderid' value="<?php echo $trader_id; ?>" />
+                                                <input type='submit' name='formverify' class="btn btn-success" value="Verify" />
+                                            </form>
+                                        </td>              
+                                    </tr>
+                                    
+                                <?php  
+                                $n++;    
+                            }
+                            }   
+                        }else { 
+                            echo "ERROR: Could not able to execute $sql. ".mysqli_error($conn); 
+                        } 
 
-             
-             ?>
-              <?php
-                if(isset($_POST['formverify'])){
-                    if(isset($_POST['traderid']) && !empty($_POST['traderid'])){
-                        $traderid = $_POST['traderid'];
-                        $sql= "UPDATE traders SET admin_verify = 'verified' WHERE user_id = '$traderid'";
-                        $update = mysqli_query($conn,$sql);
+                
+                ?>
+
+                <?php
+                    if(isset($_POST['formverify'])){
+                        if(isset($_POST['traderid']) && !empty($_POST['traderid'])){
+                            $traderid = $_POST['traderid'];
+                            $sql= "UPDATE traders SET admin_verify = 'verified' WHERE user_id = '$traderid'";
+                            $update = mysqli_query($conn,$sql);
+                        }
+                        echo "<meta http-equiv='refresh' content='0'>";
                     }
-                }
              
-             ?>
+                ?>
                                 
                                 
                             </table>
+                            </div>
                         </div>
                     </div>
 
@@ -159,41 +168,6 @@ if(!isset($_SESSION['logged'])){
         </div>
     </section>
 
-    <!-- modal for add page -->
-    <div class="modal fade" id="addpage" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-              <form action="">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Add Page</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-                <div class="form-group">
-                    <label>Page Title</label>
-                    <input type="text" class="form-control" placeholder="page title">
-                </div>
-                <div class="form-group">
-                    <label>Page Body</label>
-                    <textarea name="editor1" placeholder="page body" class="form-control"></textarea>
-                </div>
-                <div class="form-group">
-                    <label>Meta Tags</label>
-                    <input type="text" class="form-control" placeholder="Some tags">
-                </div>
-                <div class="form-group">
-                    <label>Meta description</label>
-                    <input type="text" class="form-control" placeholder="Meta tags">
-                </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              <button type="submit" class="btn btn-primary">Save changes</button>
-            </form>
-            </div>
-          </div>
-        </div>
-      </div>      
+     
 </body>
 </html>

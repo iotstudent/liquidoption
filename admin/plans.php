@@ -54,12 +54,12 @@ if(isset($_GET['plan'])){
 
                     <div class="card ">
                         <div class="card-header main-color-bg">
-                            Student plan
+                            <h4><?php echo $plan;?> Plan</h4>
                         </div>
                         <div class="card-body">
                             <div class="row">
-                                <div class="col-md-12 mr-2 ml-2">
-                                    <table class="table table-striped table-hover table-responsive">
+                                <div class="table-responsive mr-2 ml-2">
+                                    <table class="table table-striped table-hover">
                                         <tr>
                                             <th>S/n</th>
                                             <th>First Name</th>
@@ -72,52 +72,51 @@ if(isset($_GET['plan'])){
                                             <th>profit</th>
                                             
                                         </tr>
-                                        <?php
+                <?php
+
+
+                    $sql= " SELECT traders.fname,traders.lname,traders.email,Trades.plan,Trades.start_date,Trades.end_date,Trades.duration,Trades.principal,Trades.expected_earning FROM traders JOIN Trades ON  Trades.user_id = traders.user_id WHERE Trades.plan = '$plan'  ORDER BY Trades.start_date DESC";
+                    if($result = mysqli_query($conn,$sql)){ 
+                            if (mysqli_num_rows($result)>0){
+                                $n=1;
+                                while($row = mysqli_fetch_array($result, MYSQLI_ASSOC)){
+                                
+                                    $trader_fname = $row['fname'];
+                                    $trader_lname = $row['lname'];
+                                    $trader_email = $row['email'];
+                                    $start_date = $row['start_date'];
+                                    $end_date = $row['end_date'];
+                                    $duration = $row['duration'];
+                                    $principal = $row['principal'];
+                                    $expected = $row['expected_earning'];
+                                    
+                                    ?>
+                                    
+                                    <tr>
+                                        <td><?php echo $n;?></td>
+                                        <td><?php echo $trader_fname;?></td>
+                                        <td><?php echo $trader_lname;?></td>
+                                        <td><?php echo $trader_email;?></td>
+                                        <td><?php echo $start_date;?></td>
+                                        <td><?php echo $end_date;?></td> 
+                                        <td><?php echo $duration;?></td>
+                                        <td><?php echo $principal;?></td>  
+                                        <td><?php echo $expected;?></td>          
+                                    </tr>
+                                    
+                                <?php  
+                                $n++;    
+                            }
+                            }else{
+                                echo "No matching records are found."; 
+                            }    
+                        }else { 
+                            echo "ERROR: Could not able to execute $sql. ".mysqli_error($conn); 
+                        } 
 
 
 
-
-$sql= " SELECT traders.fname,traders.lname,traders.email,Trades.plan,Trades.start_date,Trades.end_date,Trades.duration,Trades.principal,Trades.expected_earning FROM traders JOIN Trades ON  Trades.user_id = traders.user_id WHERE Trades.plan = '$plan'  ORDER BY Trades.start_date DESC";
-if($result = mysqli_query($conn,$sql)){ 
-        if (mysqli_num_rows($result)>0){
-            $n=1;
-            while($row = mysqli_fetch_array($result, MYSQLI_ASSOC)){
-            
-                $trader_fname = $row['fname'];
-                $trader_lname = $row['lname'];
-                $trader_email = $row['email'];
-                $trade_plan = $row['plan'];
-                $start_date = $row['start_date'];
-                $end_date = $row['end_date'];
-                $duration = $row['duration'];
-                $principal = $row['principal'];
-                $expected = $row['expected_earning'];
-                
                 ?>
-                
-                <tr>
-                    <td><?php echo $n;?></td>
-                    <td><?php echo $trader_fname;?></td>
-                    <td><?php echo $trader_lname;?></td>
-                    <td><?php echo $trader_email;?></td>
-                    <td><?php echo $trade_plan;?></td>
-                    <td><?php echo $start_date;?></td>
-                    <td><?php echo  $end_date;?></td> 
-                    <td><?php echo $principal;?></td>  
-                    <td><?php echo $expected;?></td>          
-                </tr>
-                
-            <?php  
-            $n++;    
-        }
-        }else{
-            echo "No matching records are found."; 
-        }    
-    }else { 
-        echo "ERROR: Could not able to execute $sql. ".mysqli_error($conn); 
-    } 
-
-?>
 
                                         
                                         

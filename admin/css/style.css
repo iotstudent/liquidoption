@@ -1,16 +1,18 @@
+
 body {
-  background-color: #f4f4f4;
+  background-color:#f8f9fa !important;
+  font-family:Raleway !important;
 }
 .navbar {
   background-color: red;
 }
-.navbar > a {
-  color: #f4f4f4;
-}
-.navbar > div > ul > li > a {
-  color: #f4f4f4;
-}
 
+.navbar > div > ul > li > a{
+  color: #f4f4f4 !important;
+}
+.navbar>div>ul>li>a:hover {
+  color:red !important;
+}
 .navbar,
 .navbar-brand {
   min-height: 33px !important;
@@ -26,7 +28,7 @@ body {
 /* custom */
 .main-color-bg {
   background-color:#ebce44 !important;
-  color: #ffffff;
+  color: #ffffff !important;
   border-color:#ebce44 !important;
 }
 h6 {
@@ -76,6 +78,9 @@ small {
   }
 }
 
+
+
+
 #login {
   margin-top: 45px;
 }
@@ -84,12 +89,16 @@ small {
 #header {
   background-color: #696969;
   color: #ffffff;
-  padding-bottom: 10px;
+  padding: 10px;
   margin-bottom: 15px;
 }
-#header .create {
-  padding-top: 20px;
+@media only screen and (max-width: 764px) {
+  #header {
+    margin-bottom: 0px;
+    
+  }
 }
+
 /*  Breadcrumb */
 #breadcrumb {
   margin-bottom: 15px;
@@ -101,9 +110,36 @@ small {
 .breadcrumb a {
   color: #333333 !important;
 }
+@media only screen and (max-width: 764px) {
+  #breadcrumb {
+    display: none !important;
+  }
+}
+
+
+
+.box{
+  flex: 0 0 20% !important;
+  flex-wrap:wrap !important;
+}
+@media only screen and (max-width: 864px) {
+ 
+.box{
+  flex: 0 0 100% !important;
+  flex-wrap:wrap !important;
+}
+}
+
 
 .dash-box {
   text-align: center;
+  padding:12px 1px 12px 1px !important;
+  border: 1px solid #ebce44 !important;
+}
+.dash-box:hover {
+  background-color: #ebce44 !important;
+  color:#f7f7f7;
+  border: 1px solid #f7f7f7 !important;
 }
 @media only screen and (max-width: 764px) {
   .dash-box {
@@ -111,52 +147,31 @@ small {
   }
 }
 .lower-sections {
-  margin-top: 15px !important;
+  margin-top: 20px !important;
 }
 
-.listed {
-  margin: 0px 1px 0px 1px !important;
-}
-.listed2 {
-  margin: 0px 0px 0px 2% !important;
-}
-.savedprops > ul > li {
-  list-style-type: none;
-}
-.listings {
-  list-style-type: none;
-}
-.listings > li {
-  display: inline;
-  padding: 5px;
-}
-.listings2 {
-  list-style-type: none;
-}
-.listings2 > li {
-  display: inline;
-  margin: 5px;
-}
-.listingsp {
-  margin-left: 35px;
-}
+
 .mobilenav {
   margin-top: 5px;
   margin-bottom: 5px;
 }
 .sidenav>a:hover{
   background-color: #ebce44;
+  color:#f7f7f7;
 }
-
+.sidenav{
+  border:1px solid #ebce44;
+  font-size:15px;
+}
+.listed {
+  margin: 0px 2px 0px 0px !important;
+ 
+}
 @media only screen and (max-width: 764px) {
   .sidenav {
     display: none !important;
   }
-  #breadcrumb {
-    display: none !important;
-  }
 }
-
 @media only screen and (min-width: 765px) {
   .mobilenav {
     display: none !important;
